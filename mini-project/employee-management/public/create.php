@@ -1,31 +1,37 @@
-<!--  -->
 <?php
+// Memasukkan file konfigurasi database
 require_once '../config/database.php';
+
+// Mengecek apakah metode permintaan adalah POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Mengambil data dari form
     $name = $_POST['name'];
     $address = $_POST['address'];
     $salary = $_POST['salary'];
 
-    // insert data to database
+    // Query untuk memasukkan data ke tabel employees
     $sql = "INSERT INTO employees (name, address, salary) VALUES (:name, :address, :salary)";
+    // Mempersiapkan statement
     $stmt = $pdo->prepare($sql);
+    // Menjalankan statement dengan data yang diambil dari form
     $stmt->execute([
         'name' => $name,
         'address' => $address,
         'salary' => $salary
     ]);
+    // Redirect ke halaman index setelah sukses
     header("Location: index.php");
 }
-
 
 ?>
 
 <?php include '../include/header.php' ?>
 
 <h1 class="text-2xl mb-4">Tambah Karyawan</h1>
+<!-- Form untuk menambahkan karyawan baru -->
 <form action="create.php" method="POST">
     <div class="mb-4">
-        <label for="nama" class="block text-grey-700">Nama : </label>
+        <label for="name" class="block text-grey-700">Nama : </label>
         <input type="text" name="name" id="name" class="border rounded w-full py-2 px-3 text-grey-700">
     </div>
     <div class="mb-4">

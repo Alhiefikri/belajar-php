@@ -1,20 +1,10 @@
 <?php
-// Memasukkan file konfigurasi database
-require_once '../config/database.php';
 // Memasukkan header halaman
-include '../include/header.php';
-
-// Query untuk mendapatkan semua data dari tabel employees
-$sql = "SELECT * FROM employees";
-// Eksekusi query dan simpan hasilnya
-$stmt = $pdo->query($sql);
-// Ambil semua data sebagai array asosiatif
-$employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+include 'views/includes/header.php';
 ?>
 
 <!-- Tombol untuk menambahkan karyawan baru -->
-<a href="create.php" class="bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded mb-4 inline-block">Tambah Karyawan</a>
+<a href="index.php?action=create" class="bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded mb-4 inline-block">Tambah Karyawan</a>
 <table class="min-w-full bg-white">
     <thead class="bg-gray-800 text-white">
         <tr>
@@ -40,9 +30,9 @@ $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </td>
                 <td class="border px-4 py-2 flex gap-4">
                     <!-- Link untuk mengedit karyawan -->
-                    <a class="bg-yellow-500 hover:bg-yellow-800 text-white py-1 px-2 rounded" href="update.php?id=<?= $employee['id']  ?>">Edit</a>
+                    <a class="bg-yellow-500 hover:bg-yellow-800 text-white py-1 px-2 rounded" href="index.php?action=edit&id=<?= $employee['id']  ?>">Edit</a>
                     <!-- Link untuk menghapus karyawan -->
-                    <a class="bg-red-500 hover:bg-red-800 text-white py-1 px-2 rounded" href="delete.php?id=<?= $employee['id']  ?>">Delete</a>
+                    <a class="bg-red-500 hover:bg-red-800 text-white py-1 px-2 rounded" href="index.php?action=delete&id=<?= $employee['id']  ?>">Delete</a>
                 </td>
             </tr>
 
@@ -52,4 +42,4 @@ $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </table>
 
 <!-- Memasukkan footer halaman -->
-<?php include '../include/footer.php' ?>
+<?php include 'views/includes/footer.php' ?>
