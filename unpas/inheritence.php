@@ -1,5 +1,15 @@
 <?php
 
+/*
+    ⁡⁣⁣⁢Kode ini mendemonstrasikan konsep inheritance (pewarisan) dalam pemrograman 
+    berorientasi objek. Kelas Produk berfungsi sebagai kelas dasar, dan 
+    kelas Komik serta Game mewarisi sifat dan metode dari kelas Produk.⁡
+    
+    ⁡⁢⁣⁣Setiap kelas turunan (Komik dan Game) dapat memiliki metode mereka sendiri 
+    untuk menampilkan informasi produk dengan format yang berbeda, 
+    meskipun mereka mewarisi properti dasar dari kelas Produk.⁡
+*/
+
 class Produk
 {
     public $judul,
@@ -9,6 +19,7 @@ class Produk
         $jmlHalaman,
         $waktuMain;
 
+    // Konstruktor untuk menginisialisasi objek Produk
     public function __construct($judul = "judul", $penulis = "penulis", $penerbit = "penerbit", $harga = 0, $jmlHalaman = 0, $waktuMain = 0)
     {
         $this->judul = $judul;
@@ -19,11 +30,13 @@ class Produk
         $this->waktuMain = $waktuMain;
     }
 
+    // Metode untuk mendapatkan label produk
     public function getLabel()
     {
         return "$this->penulis, $this->penerbit";
     }
 
+    // Metode untuk mendapatkan informasi dasar produk
     public function getInfoProduk()
     {
         $str = "{$this->judul} | {$this->getLabel()} (Rp. {$this->harga})";
@@ -31,8 +44,10 @@ class Produk
     }
 }
 
+// Kelas Komik yang mewarisi dari kelas Produk
 class Komik extends Produk
 {
+    // Override metode getInfoProduk untuk memberikan format khusus
     public function getInfoProduk()
     {
         $str = "Komik : {$this->judul} | {$this->getLabel()} (Rp. {$this->harga}) - {$this->jmlHalaman} Halaman.";
@@ -40,8 +55,10 @@ class Komik extends Produk
     }
 }
 
+// Kelas Game yang mewarisi dari kelas Produk
 class Game extends Produk
 {
+    // Override metode getInfoProduk untuk memberikan format khusus
     public function getInfoProduk()
     {
         $str = "Game : {$this->judul} | {$this->getLabel()} (Rp. {$this->harga}) ~ {$this->waktuMain} Jam.";
@@ -49,6 +66,7 @@ class Game extends Produk
     }
 }
 
+// Kelas untuk mencetak informasi produk
 class CetakInfoProduk
 {
     public function cetak(Produk $produk)
@@ -58,9 +76,11 @@ class CetakInfoProduk
     }
 }
 
+// Membuat objek dari kelas Komik dan Game
 $produk1 = new Komik("Naruto", "Masashi Kihimoto", "Shonen Jump", 30000, 100, 0);
 $produk2 = new Game("Uncharted", "Neil Druckman", "Sony Computer", 2500000, 0, 50);
 
+// Menampilkan informasi produk
 echo $produk1->getInfoProduk();
 echo "<br>";
 echo $produk2->getInfoProduk();
