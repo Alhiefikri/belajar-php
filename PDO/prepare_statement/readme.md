@@ -6,25 +6,14 @@ Proyek ini menggunakan PHP dengan PDO untuk mengelola data mahasiswa dalam datab
 ## Penggunaan Prepared Statements
 Prepared statements adalah fitur di PDO yang memungkinkan pemisahan antara query SQL dan data. Ini meningkatkan keamanan dan efisiensi, serta melindungi aplikasi dari serangan SQL injection.
 
-### Kelas Data
-Kelas `Data` memiliki beberapa metode untuk berinteraksi dengan database.
+### Fitur Utama
+- **Insert Data**: Menambahkan data mahasiswa baru ke dalam tabel `mahasiswa`.
+- **Pencarian Data**: Mengambil data mahasiswa berdasarkan nama menggunakan pencarian LIKE.
+- **Filter Berdasarkan Daftar**: Mengambil data mahasiswa yang namanya terdapat dalam daftar menggunakan IN.
 
-- **insertData($nama, $alamat)**: 
-  - Menambahkan data mahasiswa baru ke dalam tabel `mahasiswa`.
-  - Menggunakan prepared statements untuk menghindari SQL injection.
-  
-- **getLike($nama)**:
-  - Mengambil data mahasiswa berdasarkan nama yang mirip (menggunakan LIKE).
-  - Menggunakan prepared statements untuk memastikan input aman.
-  
-- **getIn(array $list)**:
-  - Mengambil data mahasiswa yang namanya terdapat dalam daftar (menggunakan IN).
-  - Menggunakan prepared statements untuk efisiensi dan keamanan.
-
-## Struktur Proyek
+### Struktur Proyek
 - **Connection.php**: Mengatur koneksi ke database.
-- **Data.php**: Berisi kelas `Data` dengan metode untuk manipulasi data.
-- **index.php**: Menggunakan kelas `Data` untuk menampilkan dan menambahkan data.
+- **index.php**: Menyediakan antarmuka untuk menambahkan dan menampilkan data mahasiswa.
 
 ## Cara Menjalankan
 1. Pastikan Anda memiliki server PHP dan database yang terkonfigurasi.
